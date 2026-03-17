@@ -17,6 +17,11 @@ export default function App() {
     setFormDescricao('');
   }
 
+  useEffect(() => {
+    console.log('Aplicação iniciada, formulário limpo.')
+  }, [])
+  
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.formContainer}>
