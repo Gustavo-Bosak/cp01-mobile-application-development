@@ -32,7 +32,7 @@ export default function Home () {
       const perfil = {
         nome: formNome,
         cpf: formCPF,
-        descricao: formTelefone,
+        telefone: formTelefone,
         curso: formCurso
       }
 
