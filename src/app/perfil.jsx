@@ -77,6 +77,10 @@ export default function ResultPerfil () {
           </View>
         </View>
 
+        <TouchableOpacity style={styles.closeButton} onPress={() => router.back()}>
+          <Text style={styles.closeButtonText}>Voltar</Text>
+        </TouchableOpacity>
+
         <TouchableOpacity style={styles.closeButton} onPress={handleExit}>
           <Text style={styles.closeButtonText}>Sair</Text>
         </TouchableOpacity>

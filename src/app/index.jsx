@@ -11,6 +11,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { useRouter } from 'expo-router'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import MaskInput, { Masks } from 'react-native-mask-input'
+import { useEffect } from 'react'
 
 export default function Home () {
   const router = useRouter()
@@ -18,6 +19,24 @@ export default function Home () {
   const [formCPF, setformCPF] = useState('')
   const [formTelefone, setformTelefone] = useState('')
   const [formCurso, setFormCurso] = useState('')
+
+  useEffect(() => {
+    const loadPersistedData = async () => {
+      try {
+        const jsonValue = await AsyncStorage.getItem('perfil')
+        if (jsonValue != null) {
+          const data = JSON.parse(jsonValue)
+          setFormNome(data.nome || '')
+          setFormPhone(data.telefone || '')
+          setformCPF(data.cpf || '')
+          setFormCurso(data.curso || '')
+        }
+      } catch (e) {
+        console.error('Erro ao carregar cache:', e)
+      }
+    }
+    loadPersistedData()
+  }, [])
 
   const handleSumbit = async () => {
     if (!formNome || !formCPF || !formTelefone || !formCurso) {
